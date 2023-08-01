@@ -31,6 +31,29 @@ class Staff:
         else:
             print('Position is invalid. No changes made.')
 
-            
+class ManagmentStaff(Staff):       
+    def __init__(self, pName, pPay, pAllowance, pBonus):
+        super().__init__('Manager', pName, pPay)  
+        self.allowance = pAllowance
+        self.bonus = pBonus
+        
+    def calculatePay(self):
+        basicPay = super().calculatePay()
+        self.pay = basicPay + self.allowance
+        return self.pay
+    
+    def calculatePerfBonus(self):
+        promt = 'Enter performance grade for %s' %(self.name)
+        grade = input(promt)
+        if (grade == 'A'):
+            self.bonus = 1000
+        else:
+            self.bonus = 0
+        return self.bonus
+    
+class BasicStaff(Staff):
+    def __init__(self, pName, pPay):
+        super().__init__('Basic', pName, pPay)
+    
 
     
